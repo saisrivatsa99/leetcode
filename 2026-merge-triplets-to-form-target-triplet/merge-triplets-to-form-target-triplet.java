@@ -1,14 +1,16 @@
 class Solution {
     public boolean mergeTriplets(int[][] triplets, int[] target) {
-        int[] res = new int[3];
-        int m = triplets.length;
-        boolean ans = true;
-        
-        for(int[] s : triplets){
-            if(s[0]<= target[0] && s[1]<= target[1] && s[2]<= target[2]){
-                res = new int[]{Math.max(res[0], s[0]),Math.max(res[1], s[1]),Math.max(res[2], s[2])};
-            }
+        int n = triplets.length;
+        boolean a = false, b = false, c = false;
+        for (int i = 0; i < n; i++) {
+            if (triplets[i][0] > target[0]) continue;
+            if (triplets[i][1] > target[1]) continue;
+            if (triplets[i][2] > target[2]) continue;
+            if (triplets[i][0] == target[0]) a = true;
+            if (triplets[i][1] == target[1]) b = true;
+            if (triplets[i][2] == target[2]) c = true;
+            if (a && b && c) return true;
         }
-        return Arrays.equals(res,target);
+        return false;
     }
 }
