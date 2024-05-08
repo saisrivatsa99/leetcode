@@ -13,7 +13,7 @@ class Solution {
         memo.put(n, climbStairs(n-1, memo) + climbStairs(n-2, memo));
         return memo.get(n);
     }*/
-
+    /*
     //Bottom up DP
     public int climbStairs(int n){
         if(n<=1) return 1;
@@ -26,5 +26,19 @@ class Solution {
             dp[i] = dp[i-1] + dp[i-2];
         }
         return dp[n];
+    }
+    */
+    // Bottum up + optimization
+    public int climbStairs(int n){
+        if(n<=1) return 1;
+
+        int prev1 = 1;
+        int prev2 = 2;
+        for(int i=3; i<=n; i++){
+            int newval = prev1 + prev2;
+            prev1 = prev2;
+            prev2 = newval;
+        }
+        return prev2;
     }
 }
