@@ -1,5 +1,6 @@
 class Solution {
     public String removeDuplicates(String s) {
+        /*
         Stack<Character> st = new Stack<>();
         char[] str = s.toCharArray();
         StringBuilder sb = new StringBuilder("");
@@ -21,6 +22,18 @@ class Solution {
         }
         sb.reverse();
         return sb.toString();
+        */
+        char[] st = s.toCharArray();
+        int top =-1;
+        for(char ch: st){
+            if(top>=0 && st[top]==ch){
+                top--;
+            }
+            else{
+                st[++top] = ch;
+            }
+        }
 
+        return new String(st, 0, top+1);
     }
 }
