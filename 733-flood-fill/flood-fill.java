@@ -1,4 +1,5 @@
 class Solution {
+    /*
     public int[][] floodFill(int[][] image, int sr, int sc, int color) {
         if(image[sr][sc] == color) return image;
 
@@ -27,5 +28,22 @@ class Solution {
         }
         return image;
 
+    }*/
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        int oc = image[sr][sc];
+        if(oc!=color){
+            dfs(image, sr,sc,color,oc);
+        }
+        return image;
     }
+
+    public static void dfs(int[][] image, int i, int j, int color, int oc){
+         if (i < 0 || j < 0 || i >= image.length || j >= image[0].length || image[i][j] != oc) return;
+        image[i][j] = color;
+
+        dfs(image, i-1, j, color, oc);
+        dfs(image, i+1, j, color, oc);
+        dfs(image, i, j-1, color, oc);
+        dfs(image, i, j+1, color, oc);
+    }   
 }
