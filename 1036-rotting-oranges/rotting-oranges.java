@@ -24,22 +24,16 @@ class Solution {
                 
                 int x=curr[0];
                 int y = curr[1];
-                
-                
-                    
-                    for(int j=0;j<4;j++){
-                        int nx=x+dir[j][0];
-                        int ny=y+dir[j][1];
-                        if(nx>=0 && ny>=0 && nx<n && ny<m && grid[nx][ny]==1){
-                            grid[nx][ny]=2;
-                            rotten.offer(new int[]{nx,ny});
-                            freshCount--;
-                        }
-                        
+                for(int j=0;j<4;j++){
+                    int nx=x+dir[j][0];
+                    int ny=y+dir[j][1];
+                    if(nx>=0 && ny>=0 && nx<n && ny<m && grid[nx][ny]==1){
+                        grid[nx][ny]=2;
+                        rotten.offer(new int[]{nx,ny});
+                        freshCount--;
                     }
-                
+                }
             }
-        
         }
         return freshCount==0 ? rottenTime:-1 ;
     }
