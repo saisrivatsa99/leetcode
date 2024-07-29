@@ -1,5 +1,3 @@
-// Solution by Arman Nurniyazov
-
 class Solution {
     public String entityParser(String text) {
         text = text.replace("&gt;", ">");
