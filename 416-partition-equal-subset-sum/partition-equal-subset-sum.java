@@ -1,33 +1,37 @@
 class Solution {
     public boolean canPartition(int[] nums) {
+        int sum = 0;
+
+        for (int num : nums) {
+            sum += num;
+        }
+
+        if (sum % 2 != 0) {
+            return false;
+        }
+
+        int target = sum / 2;
         int n = nums.length;
-        int totalSum = 0;
-        for(int i : nums){
-            totalSum += i;
-        }
-        if(totalSum%2!=0) return false;
-        else{
-            int k = totalSum/2;
-            int[][] dp = new int[n][k+1];
-            for(int[] row : dp){
-                Arrays.fill(row, -1);
-            }
-            return helper(n-1, k, dp, nums);
-        }
+        Boolean[][] dp = new Boolean[n + 1][target + 1];
+
+        return helper(nums, n, target, 0, dp);
     }
 
-    public boolean helper(int i, int target, int[][] dp, int[] nums){
-        if(target ==0) return true;
-        if(i==0) return nums[i]==target;
-        if(dp[i][target] != -1) {
-            return dp[i][target] ==0? false : true;
+    private boolean helper(int[] nums, int n, int target, int idx, Boolean[][] dp) {
+        if (target == 0) {
+            return true;
         }
-        boolean notTaken = helper(i-1, target, dp, nums);
-        boolean taken = false;
-        if(nums[i]<=target){
-            taken = helper(i-1, target - nums[i], dp, nums);
+
+        if (target < 0 || idx >= n - 1) {
+            return false;
         }
-        dp[i][target] = taken || notTaken ? 1 :0;
-        return taken|| notTaken;
+
+        if (dp[idx][target] != null) {
+            return dp[idx][target];
+        }
+
+        return dp[idx][target] = helper(nums, n, target - nums[idx + 1], idx + 1, dp) || helper(nums, n, target, idx + 1, dp);
     }
+
+
 }
