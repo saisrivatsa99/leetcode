@@ -6,10 +6,11 @@ class Solution {
             if(mp.containsKey(nums[i])){
                 res[0] = i;
                 res[1] = mp.get(nums[i]);
+                return res;
             } else{
                 mp.put(target-nums[i], i);
             }
         }
-        return res; 
+        return new int[2]; 
     }
 }
