@@ -4,8 +4,6 @@ class Solution {
         for(int i=1; i<nums.length; i++){
             if(nums[i]>nums[k]){
                 nums[++k] = nums[i];
-            }else{
-                continue;
             }
         }
         return k+1;
