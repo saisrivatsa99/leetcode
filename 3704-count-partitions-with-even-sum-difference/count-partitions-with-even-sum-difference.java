@@ -5,7 +5,7 @@ class Solution {
         for(int i=0; i<n-1; i++){
             lsum += nums[i];
             rsum-=nums[i];
-            if(Math.abs(rsum-lsum)%2==0) count++;
+            if((lsum%2)==(rsum%2)) count++;
         }
         return count;
     }
