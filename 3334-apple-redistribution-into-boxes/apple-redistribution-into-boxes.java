@@ -6,15 +6,10 @@ class Solution {
             suma+=a;
         }
         Arrays.sort(capacity); 
-        for (int i = 0; i < capacity.length / 2; i++) {
-            int temp = capacity[i];
-            capacity[i] = capacity[capacity.length - 1 - i];
-            capacity[capacity.length - 1 - i] = temp;
-        }
-        
-        for(int c : capacity){
+
+        for(int i= capacity.length-1; i>=0; i--){
             ans++;
-            suma-=c;
+            suma-= capacity[i];
             if(suma<=0) break;
         }
         return ans;
